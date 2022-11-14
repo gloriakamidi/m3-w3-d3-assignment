@@ -15,21 +15,19 @@ function makePac() {
   let position = setToRandom(200);
 
   // Add image to div id = game
-  let game = document.getElementById('game');
-  let newimg = document.createElement('img');
-  newimg.style.position = 'absolute';
-  newimg.src = './images/PacMan1.png';
+  let game = document.getElementById("game");
+  let newimg = document.createElement("img");
+  newimg.style.position = "absolute";
+  newimg.src = "./images/PacMan1.png";
   newimg.width = 100;
 
   // TODO: set position here
-  
- newimg.style.left = position.x;
- newimg.style.top = position.y;
- 
 
+  newimg.style.left = position.x;
+  newimg.style.top = position.y;
 
   // TODO add new Child image to game
-  game.appendChild(/* TODO: add parameter */);
+  game.appendChild(newimg); /* TODO: add parameter */
 
   // return details in an object
   return {
@@ -50,13 +48,20 @@ function update() {
     item.newimg.style.top = item.position.y;
   });
   setTimeout(update, 20);
-  document.getElementById("startBtn").onclick = update();
+
 }
-  //document.getElementById("startBtn").onclick = update();
+  
 
 
 function checkCollisions(item) {
   // TODO: detect collision with all walls and make pacman bounce
+  
+  //My notes: so, there are 4 walls, up down left right the "item" is the wall which is our  boundary 
+// ex: if the top of pacMen is less than the extremity of the item or wall then both are colliding
+  if(pacMen.position.y - pacMen.radius <= item.position.y + item.height && 
+     pacMen.position.x + pacMen.radius >= item.position.x &&
+     pacMen.position.y + pacMen.radius >= item.position.y &&
+     pacMen.position.x - pacMen.radius <= item.position.x + item.width )
   
 }
 
@@ -64,7 +69,7 @@ function makeOne() {
   pacMen.push(makePac()); // add a new PacMan
 }
 
-//document.getElementById("addBtn").onclick= makeOne();
+
 
 //don't change this line
 if (typeof module !== 'undefined') {
